@@ -1,4 +1,4 @@
 ndpp.github.io
 ==============
 
-Documentation for NDPP 
+Site Contains documentation for the NDPP project.

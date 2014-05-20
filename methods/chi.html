@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Chi Integration Overview &mdash; NDPP Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="NDPP Documentation" href="../index.html" />
+    <link rel="up" title="Theory and Methodology" href="index.html" />
+    <link rel="next" title="Release Notes" href="../releasenotes/index.html" />
+    <link rel="prev" title="2. Cross Section Representation" href="cross_sections.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../releasenotes/index.html" title="Release Notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cross_sections.html" title="2. Cross Section Representation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Theory and Methodology</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ndpp_small.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3. Chi Integration Overview</a><ul>
+<li><a class="reference internal" href="#fission-reactions-and-initialization">3.1. Fission Reactions and Initialization</a></li>
+<li><a class="reference internal" href="#outgoing-neutron-energy-distributions">3.2. Outgoing Neutron Energy Distributions</a><ul>
+<li><a class="reference internal" href="#ace-law-4-continuous-tabular-distribution">3.2.1. ACE Law 4 - Continuous Tabular Distribution</a></li>
+<li><a class="reference internal" href="#ace-law-7-maxwell-fission-spectrum">3.2.2. ACE Law 7 - Maxwell Fission Spectrum</a></li>
+<li><a class="reference internal" href="#ace-law-9-evaporation-spectrum">3.2.3. ACE Law 9 - Evaporation Spectrum</a></li>
+<li><a class="reference internal" href="#ace-law-11-energy-dependent-watt-spectrum">3.2.4. ACE Law 11 - Energy-Dependent Watt Spectrum</a></li>
+<li><a class="reference internal" href="#ace-law-61-correlated-energy-and-angle-distribution">3.2.5. ACE Law 61 - Correlated Energy and Angle Distribution</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creation-of-union-energy-grids-for">3.3. Creation of Union Energy Grids for <img class="math" src="../_images/math/11f76b60855f5be9a8510ed7cc82ccc13cfa59e5.png" alt="\chi_g(E)"/></a></li>
+<li><a class="reference internal" href="#thinning-of-union-energy-grids">3.4. Thinning of Union Energy Grids</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cross_sections.html"
+                        title="previous chapter">2. Cross Section Representation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../releasenotes/index.html"
+                        title="next chapter">Release Notes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/methods/chi.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="chi-integration-overview">
+<span id="methods-chi"></span><h1>3. Chi Integration Overview<a class="headerlink" href="#chi-integration-overview" title="Permalink to this headline">¶</a></h1>
+<p><em>NOTE THAT THIS FEATURE HAS NOT YET BEEN TESTED</em>
+Fissionable nuclides can contain one ore more fission reactions in their ACE
+data.  NDPP must parse through each of these reactions (and the associated
+delayed neutron precursor data), calculate the outgoing
+energy spectra, <img class="math" src="../_images/math/f632c791f693410fc1bf07ad7cb02c6fcfef9aed.png" alt="\chi"/> for each energy group at each incoming energy point
+in the ACE tables (<img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/>), and then combine these in to a single
+value of <img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/> (on a single energy grid). To generate
+<img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/>, NDPP is solving the following equations for the prompt,
+delayed, and total values of <img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/>:</p>
+<div class="math">
+<p><img src="../_images/math/d0b9abbfcc5bf99a49dff97a693857ba7919eb34.png" alt="\chi_{prompt,g}(E') =\ \sum\limits_{MT}\:\sum\limits_{d}
+    \frac{\sigma_d(E')}{\sigma_f(E')}\int\limits_{E_g}^{E_{g-1}}
+    \chi_{MT,d}\left(E,E'\right)dE'"/></p>
+</div><div class="math">
+<p><img src="../_images/math/04da17b7cf69abbdf8d4e536b71fbfad4bb89f77.png" alt="\chi_{delayed,g}(E') =\ \sum\limits_{c}\:\ Y_c(E')
+    \int\limits_{E_g}^{E_{g-1}}\chi_c\left(E,E'\right)dE'"/></p>
+</div><div class="math">
+<p><img src="../_images/math/46657a6930073f5027b82f63e269a4c50e93b917.png" alt="\chi_{total,g}(E') =\ \left(1-\beta(E')\right) \chi_{prompt,g}(E') +
+    \beta(E') \chi_{delayed,g}(E')"/></p>
+</div><p>In the above equations, <img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/> is the incoming neutron energy, <img class="math" src="../_images/math/b23fd097196da132bfccfaa5980c954995a00d08.png" alt="MT"/>
+is the reaction channel, <img class="math" src="../_images/math/425d86ba2f2979d75b7535c2bcf92c33ed6b285a.png" alt="d"/> is the energy distributions within that
+channel, <img class="math" src="../_images/math/436d0bb34cc0dfdeaca888675fff9568cdcb0689.png" alt="E_g"/> and <img class="math" src="../_images/math/5f8c7b6a1ae9e690e9475a08179d80ca3dff2105.png" alt="E_{g-1}"/> are the lower and upper energy group
+boundaries for group <img class="math" src="../_images/math/67f4714f065d485540ad40829e0717bf75e9dd85.png" alt="g"/> respectively, <img class="math" src="../_images/math/ea09ef459b5f9512ef71739bbfbd0dbdb0d39011.png" alt="\beta(E')"/> is the total
+delayed neutron emission fraction, <img class="math" src="../_images/math/64c6edd40ba60800d0a25579bf6550d2a54058ce.png" alt="\sigma_{d,MT}(E')"/> and
+<img class="math" src="../_images/math/023590c08313c10316ba1ebff714d19387e1db1d.png" alt="\sigma_{f,tot}(E')"/> are  the microscopic cross-sections of this reaction
+channel and distribution occuring and the microscopic cross-section for all
+fission reactions, and <img class="math" src="../_images/math/18f33fcc7035d792debf9ae7decdc6c891e6a3d8.png" alt="Y_c"/> is the yield of precursor group <img class="math" src="../_images/math/65868d23a5bfe5b3b2d819386b19c14fa36af134.png" alt="c"/>.</p>
+<p>The details of this process are discussed in the following sections.</p>
+<div class="section" id="fission-reactions-and-initialization">
+<h2>3.1. Fission Reactions and Initialization<a class="headerlink" href="#fission-reactions-and-initialization" title="Permalink to this headline">¶</a></h2>
+<p>To determine if a nuclide is fissionable, NDPP checks for presence of the
+<img class="math" src="../_images/math/2beab766c8cfd5feb9d200c291b65e91d7a350f6.png" alt="MT=18"/> reaction channel in the ACE data. This channel is the total
+fission reaction, and must be present for there to be any possibility of
+generating values of <img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/> for the nuclide. If the nuclide is
+fissionable, then the code determines the number of fission reaction channels,
+outgoing energy distributions, delayed neutron precursor groups, and the number
+of energy grid points for each.</p>
+<p>Then, NDPP progresses through each fission channel (and energy distributions
+within that channel) and delayed neutron precursor group to obtain values for
+each of the terms in the <img class="math" src="../_images/math/c73e005a6c03a90c0c638862a60f40a13aaa31f7.png" alt="\chi_g(E')"/> equation above.  The values of
+<img class="math" src="../_images/math/8ce03f78ed945f2ef3dac87c8799b55b393527e7.png" alt="\beta"/>, <img class="math" src="../_images/math/1c7a181019fdf815f7be7ef048e109281f39a53c.png" alt="\sigma_d"/>, <img class="math" src="../_images/math/4bf400a8ad185670234bd8f43236a92d3ad420cb.png" alt="\sigma_f"/>, and <img class="math" src="../_images/math/18f33fcc7035d792debf9ae7decdc6c891e6a3d8.png" alt="Y_c"/> are
+calculated by the same means discussed in the OpenMC manual. The calculation of
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> is described in the
+next section.</p>
+</div>
+<div class="section" id="outgoing-neutron-energy-distributions">
+<h2>3.2. Outgoing Neutron Energy Distributions<a class="headerlink" href="#outgoing-neutron-energy-distributions" title="Permalink to this headline">¶</a></h2>
+<p>Monte Carlo codes must sample single values from probability distribution
+functions; NDPP, however, must integrate that probability distribution function
+between upper and lower boundaries.  Therefore, the ACE Laws are utilized in
+different ways than described in the OpenMC manual and will be discussed herein.</p>
+<p>All fission reactions are obtained from either ENDF File 5 (Energy Distribution
+of Secondary Particles) or File 6 (Product Energy-Angle Distributions).  The
+following subsections discuss each of the ACE Laws used to describe fission
+neutron energy distributions in ENDF/B-7 and how these laws are treated by NDPP.</p>
+<p>After the calculation of
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> for each energy
+group, the values are normalized to 1.0 to account for any inaccuracies
+introduced by the interpolation schemes.</p>
+<div class="section" id="ace-law-4-continuous-tabular-distribution">
+<h3>3.2.1. ACE Law 4 - Continuous Tabular Distribution<a class="headerlink" href="#ace-law-4-continuous-tabular-distribution" title="Permalink to this headline">¶</a></h3>
+<p>This representation is essentially a two-dimensional table which provides
+points of both the probability distribution function
+<img class="math" src="../_images/math/0d9259ec8508940d49ae50d5653bd43c0bd477fc.png" alt="\chi\left(E,E'\right)"/>, a cumulative distribution function (CDF)
+<img class="math" src="../_images/math/50936505cd414726a98e413fe76427c169cb10f4.png" alt="\int\limits_{0}^E\chi\left(E,E'\right)dE'"/>, and rules for interpolating
+between each of the E and E&#8217; data sets.  To determine
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/>, NDPP must first
+find the location of the data corresponding to <img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/> data, and then
+interpolate on the CDF to find teh CDF at <img class="math" src="../_images/math/5f8c7b6a1ae9e690e9475a08179d80ca3dff2105.png" alt="E_{g-1}"/> and <img class="math" src="../_images/math/436d0bb34cc0dfdeaca888675fff9568cdcb0689.png" alt="E_g"/>.  The
+value of <img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> is simply
+the difference between these two values.  The interpolation rules are followed
+as described in the OpenMC Methods Manual.</p>
+</div>
+<div class="section" id="ace-law-7-maxwell-fission-spectrum">
+<h3>3.2.2. ACE Law 7 - Maxwell Fission Spectrum<a class="headerlink" href="#ace-law-7-maxwell-fission-spectrum" title="Permalink to this headline">¶</a></h3>
+<p>One representation of the secondary energies for neutrons from fission is the
+so-called Maxwell spectrum. A probability distribution for the Maxwell spectrum
+can be written in the form</p>
+<div class="math">
+<p><img src="../_images/math/6cbb18cbec73db5814e13adb7e3622f5f355c8a5.png" alt="\chi(E,E') dE' = c E'^{1/2} e^{-E'/T(E)} dE'"/></p>
+</div><p>where <img class="math" src="../_images/math/cfd13a0f26eb7ef0093319a7669da7dd3771dbac.png" alt="E"/> is the incoming energy of the neutron and <img class="math" src="../_images/math/6d42c88506b8da39a2a23653aecbfb7c29728063.png" alt="T"/> is the
+so-called nuclear temperature, which is a function of the incoming energy of the
+neutron. The ACE format contains a list of nuclear temperatures versus incoming
+energies. The nuclear temperature is interpolated between neighboring incoming
+energies using a specified interpolation law. Once the temperature <img class="math" src="../_images/math/6d42c88506b8da39a2a23653aecbfb7c29728063.png" alt="T"/> is
+determined, we then can analytically determine the value of
+<img class="math" src="../_images/math/25384b575e737cb6fc364f00e0667cf2b42602ad.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E',E\right)dE"/> with the following
+relation:</p>
+<div class="math">
+<p><img src="../_images/math/4e2749ec37bba58c9e473a930ac1366f5c7313c2.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE' =\
+    c \left(\frac{1}{2}\sqrt{\pi}\left(T(E)\right)^{\frac{3}{2}}
+    erf\left(\frac{E'}{T(E)}\right)-T(E)\sqrt{E'}\exp{-\frac{E'}{T(E)}}\right)"/></p>
+</div><p>This integral is forced to 0 for values of E&#8217; greater than the restriction
+energy, <img class="math" src="../_images/math/45953c233bd3407603fcb9ed0eaebe226efe6e22.png" alt="U(E)"/>.</p>
+</div>
+<div class="section" id="ace-law-9-evaporation-spectrum">
+<h3>3.2.3. ACE Law 9 - Evaporation Spectrum<a class="headerlink" href="#ace-law-9-evaporation-spectrum" title="Permalink to this headline">¶</a></h3>
+<p>Evaporation spectra are primarily used in compound nucleus processes where a
+secondary particle can &#8220;evaporate&#8221; from the compound nucleus if it has
+sufficient energy. The probability distribution for an evaporation spectrum can
+be written in the form</p>
+<div class="math">
+<p><img src="../_images/math/a72c69ba2be0ebff1c238c26f34f914cb8766c1e.png" alt="\chi(E,E') dE' = c E' e^{-E'/T(E)} dE'"/></p>
+</div><p>where <img class="math" src="../_images/math/cfd13a0f26eb7ef0093319a7669da7dd3771dbac.png" alt="E"/> is the incoming energy of the neutron and <img class="math" src="../_images/math/6d42c88506b8da39a2a23653aecbfb7c29728063.png" alt="T"/> is the
+nuclear temperature, which is a function of the incoming energy of the
+neutron. The ACE format contains a list of nuclear temperatures versus incoming
+energies. The nuclear temperature is interpolated between neighboring incoming
+energies using a specified interpolation law. Once the temperature <img class="math" src="../_images/math/6d42c88506b8da39a2a23653aecbfb7c29728063.png" alt="T"/> is
+determined, we then analytically determine the value of
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> with the following
+relation:</p>
+<div class="math">
+<p><img src="../_images/math/8063594885bf018047aadc8e90afdd0e375bf95e.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE' =\
+    -T(E) c \exp{-\frac{E'}{T(E)}}\left(T(E)+E'\right)"/></p>
+</div><p>This integral is forced to 0 for values of E&#8217; greater than the restriction
+energy, <img class="math" src="../_images/math/45953c233bd3407603fcb9ed0eaebe226efe6e22.png" alt="U(E)"/>.</p>
+</div>
+<div class="section" id="ace-law-11-energy-dependent-watt-spectrum">
+<h3>3.2.4. ACE Law 11 - Energy-Dependent Watt Spectrum<a class="headerlink" href="#ace-law-11-energy-dependent-watt-spectrum" title="Permalink to this headline">¶</a></h3>
+<p>The probability distribution for a Watt fission spectrum can be written in the
+form</p>
+<div class="math">
+<p><img src="../_images/math/1f1dc6e5627e9d68bbd3bd1f58a9f89e8adb56ed.png" alt="\chi(E,E') dE' = c e^{-E'/a(E)} \sinh \sqrt{b(E) \, E'} dE'"/></p>
+</div><p>where <img class="math" src="../_images/math/7dd2a5ea01fbd72ad2a58dd1f3d6ecbfde6208a1.png" alt="a"/> and <img class="math" src="../_images/math/5e87bf41a96deddf6cb485ff530f153f2590e9cc.png" alt="b"/> are parameters for the distribution and are given
+as tabulated functions of the incoming energy of the neutron. These two
+parameters are interpolated on the incoming energy grid using a specified
+interpolation law. Once the parameters have been determined, we then
+analytically determine the value of
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> with the following
+relation:</p>
+<p>This integral is forced to 0 for values of E&#8217; greater than the restriction
+energy, <img class="math" src="../_images/math/45953c233bd3407603fcb9ed0eaebe226efe6e22.png" alt="U(E)"/>.</p>
+</div>
+<div class="section" id="ace-law-61-correlated-energy-and-angle-distribution">
+<h3>3.2.5. ACE Law 61 - Correlated Energy and Angle Distribution<a class="headerlink" href="#ace-law-61-correlated-energy-and-angle-distribution" title="Permalink to this headline">¶</a></h3>
+<p>This law is very similar to ACE Law 4, except there is another dimension in the
+table to represent the angular probability distribution function.  Since the
+<img class="math" src="../_images/math/f632c791f693410fc1bf07ad7cb02c6fcfef9aed.png" alt="\chi"/> portion of NDPP is not concerned with the outgoing angle, and
+therefore this extra dimension can be ignored.  Therefore the methods used to
+calculate <img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/>, are the
+same as is discussed in the Law 4 section.</p>
+</div>
+</div>
+<div class="section" id="creation-of-union-energy-grids-for">
+<h2>3.3. Creation of Union Energy Grids for <img class="math" src="../_images/math/11f76b60855f5be9a8510ed7cc82ccc13cfa59e5.png" alt="\chi_g(E)"/><a class="headerlink" href="#creation-of-union-energy-grids-for" title="Permalink to this headline">¶</a></h2>
+<p>At this stage, NDPP has a tabular representation of
+<img class="math" src="../_images/math/c183e4e9d0ebef3885a275a095b7b5e6ff9ccbcb.png" alt="\int\limits_{E_g}^{E_{g-1}}\chi\left(E,E'\right)dE'"/> for each incoming
+energy, <img class="math" src="../_images/math/cfd13a0f26eb7ef0093319a7669da7dd3771dbac.png" alt="E"/>, and outgoing energy group, <img class="math" src="../_images/math/67f4714f065d485540ad40829e0717bf75e9dd85.png" alt="g"/> for every fission
+reaction channel and energy distribution as well as for each of the delayed
+neutron precursor groups.  Each of these tables has values on a completely
+different set of incoming energies (since the ACE data are on separate energy
+grids as well) and must be combined on to the same energy grid for the prompt,
+delayed, and total values of <img class="math" src="../_images/math/11f76b60855f5be9a8510ed7cc82ccc13cfa59e5.png" alt="\chi_g(E)"/>.  This unionized energy grid
+is made by using all of the energy points in the relevant <img class="math" src="../_images/math/11f76b60855f5be9a8510ed7cc82ccc13cfa59e5.png" alt="\chi_g(E)"/>
+distributions and linearly interpolating between values for points without a
+data set on the grid. Due to the additional interpolation step, these values
+are also re-normalized to 1.0.  A unioninzed grid exists for each of the prompt,
+delayed, and total values of <img class="math" src="../_images/math/11f76b60855f5be9a8510ed7cc82ccc13cfa59e5.png" alt="\chi_g(E)"/>.</p>
+</div>
+<div class="section" id="thinning-of-union-energy-grids">
+<h2>3.4. Thinning of Union Energy Grids<a class="headerlink" href="#thinning-of-union-energy-grids" title="Permalink to this headline">¶</a></h2>
+<p>Since the unionized grids must be searched by the Monte Carlo code during
+runtime, it is desirable to have the size of the grid be as small as possible.
+To this end, NDPP provides the user with an option to <cite>thin</cite> the energy grid
+such that <img class="math" src="../_images/math/cfd13a0f26eb7ef0093319a7669da7dd3771dbac.png" alt="E"/> points which provide an increase accuracy of less than the
+user-specified tolerance when linear interpolation with neighboring points is
+used instead of the explicit value are discared from the data.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../releasenotes/index.html" title="Release Notes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cross_sections.html" title="2. Cross Section Representation"
+             >previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" >Theory and Methodology</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013-2014, Adam G Nelson and Contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

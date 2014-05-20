@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Writing XML Input Files &mdash; NDPP Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="NDPP Documentation" href="../index.html" />
+    <link rel="up" title="User’s Guide" href="index.html" />
+    <link rel="next" title="3. NDPP Utilities" href="utilities.html" />
+    <link rel="prev" title="1. Installation and Configuration" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="3. NDPP Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="1. Installation and Configuration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ndpp_small.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Writing XML Input Files</a><ul>
+<li><a class="reference internal" href="#overview-of-files">2.1. Overview of Files</a></li>
+<li><a class="reference internal" href="#ndpp-options-specification-ndpp-xml">2.2. NDPP Options Specification &#8211; ndpp.xml</a><ul>
+<li><a class="reference internal" href="#scatt-type-element">2.2.1. <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#scatt-order-element">2.2.2. <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#nuscatter-element">2.2.3. <tt class="docutils literal"><span class="pre">&lt;nuscatter&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#mu-bins-element">2.2.4. <tt class="docutils literal"><span class="pre">&lt;mu_bins&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#freegas-cutoff-element">2.2.5. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#cross-sections-element">2.2.6. <tt class="docutils literal"><span class="pre">&lt;cross_sections&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#energy-bins-element">2.2.7. <tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#integrate-chi-element">2.2.8. <tt class="docutils literal"><span class="pre">&lt;integrate_chi&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#thinning-tol-element">2.2.9. <tt class="docutils literal"><span class="pre">&lt;thinning_tol&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#print-tol-element">2.2.10. <tt class="docutils literal"><span class="pre">&lt;print_tol&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#output-format-element">2.2.11. <tt class="docutils literal"><span class="pre">&lt;output_format&gt;</span></tt> Element</a></li>
+<li><a class="reference internal" href="#threads-element">2.2.12. <tt class="docutils literal"><span class="pre">&lt;threads&gt;</span></tt> Element</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-section-library-specification-cross-sections-xml">2.3. Cross-Section Library Specification &#8211; cross_sections.xml</a><ul>
+<li><a class="reference internal" href="#freegas-cutoff-attribute">2.3.1. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Attribute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">1. Installation and Configuration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">3. NDPP Utilities</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/usersguide/input.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="writing-xml-input-files">
+<span id="usersguide-input"></span><h1>2. Writing XML Input Files<a class="headerlink" href="#writing-xml-input-files" title="Permalink to this headline">¶</a></h1>
+<p>The input files for NDPP are a set of <a class="reference external" href="http://www.w3.org/XML/">XML</a> files. XML, which stands for
+eXtensible Markup Language, is a simple format that allows data to be exchanged
+efficiently between different programs and interfaces.</p>
+<div class="section" id="overview-of-files">
+<h2>2.1. Overview of Files<a class="headerlink" href="#overview-of-files" title="Permalink to this headline">¶</a></h2>
+<p>To provide the input parameters for NDPP, there are two input files required:
+<tt class="docutils literal"><span class="pre">ndpp.xml</span></tt>, and a <tt class="docutils literal"><span class="pre">cross_sections</span></tt> file.  The <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt> file provides NDPP with
+the options the user wishes to use when processing a set of nuclides.  This
+file must be named <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt>.  The set of nuclides to be pre-processed is
+provided in the <tt class="docutils literal"><span class="pre">cross_sections</span></tt> file, which can be named however the user wishes,
+but typically is named <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt>.
+This file is very similar to the <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file used by <a class="reference external" href="https://github.com/mit-crpg/openmc">OpenMC</a>,
+and the <a class="reference external" href="https://github.com/mit-crpg/openmc">OpenMC</a> <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file can be read directly by NDPP as a good
+starting point. If an explicit <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file is not provided
+(and the path and filename provided in <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt>), then the default
+<tt class="docutils literal"><span class="pre">cross_sections</span></tt> file referenced by the <span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CROSS_SECTIONS</span></tt> environment
+variable will be used.  For most cases this means that the user&#8217;s entire
+cross-section library (in the default <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file) will be
+processed, unless a reduced set is provided with a local <tt class="docutils literal"><span class="pre">cross_sections</span></tt> file.</p>
+</div>
+<div class="section" id="ndpp-options-specification-ndpp-xml">
+<span id="ndpp"></span><h2>2.2. NDPP Options Specification &#8211; ndpp.xml<a class="headerlink" href="#ndpp-options-specification-ndpp-xml" title="Permalink to this headline">¶</a></h2>
+<p>All calculational parameters and desired output options are specified in
+the <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt> file.  In the following discussion, if a default value is listed for a
+parameter, then that is the value which NDPP will use if the parameter is not
+provided in the input file.</p>
+<div class="section" id="scatt-type-element">
+<h3>2.2.1. <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt> Element<a class="headerlink" href="#scatt-type-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt> element has no attributes and has an accepted
+value of &#8220;tabular&#8221; or &#8220;legendre&#8221;. If set to &#8220;tabular&#8221;, the incoming
+energy-to-group scattering distributions will be output in a tabular format
+with the number of bins defined by the <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> element.  If this
+element is set to &#8220;legendre&#8221;, the Legendre moments of the angular distribution
+will be output with the scattering order defined in the <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> element.</p>
+<blockquote>
+<div><p><em>Default</em>: <tt class="docutils literal"><span class="pre">legendre</span></tt></p>
+<p><em>NOTE</em>: The <tt class="docutils literal"><span class="pre">tabular</span></tt> format has not yet been implemented in NDPP</p>
+</div></blockquote>
+</div>
+<div class="section" id="scatt-order-element">
+<h3>2.2.2. <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> Element<a class="headerlink" href="#scatt-order-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> element has no attributes and contains a single integer.
+As discussed in the <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt> section, the <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> element
+provides either the number of tabular bins or the scattering order to NDPP,
+depending on the value of <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt>.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">5</span></tt></div></blockquote>
+</div>
+<div class="section" id="nuscatter-element">
+<h3>2.2.3. <tt class="docutils literal"><span class="pre">&lt;nuscatter&gt;</span></tt> Element<a class="headerlink" href="#nuscatter-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;nuscatter&gt;</span></tt> element has no attributes and has an accepted value of
+&#8220;true&#8221; or &#8220;false&#8221;. If set to &#8220;true&#8221;, then the library produced by NDPP will
+contain a dataset representing the total production of neutrons due to scatter
+(that is, <img class="math" src="../_images/math/416cf0cfec922aef228e2ef7df667bbaa763d690.png" alt="\frac{\nu\sigma_{s,l,E'\rightarrow g}\left(E'\right)}{\sigma_s\left(E'\right)}"/>).
+This data will be included in addition to the standard scattering data
+(<img class="math" src="../_images/math/911be61c01834dbc9d0ad8e2384c3d597b783f14.png" alt="\frac{\sigma_{s,l,E'\rightarrow g}\left(E'\right)}{\sigma_s\left(E'\right)}"/>).
+If &#8220;false&#8221;, then the scattering production of neutrons will not be included.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">True</span></tt></div></blockquote>
+</div>
+<div class="section" id="mu-bins-element">
+<h3>2.2.4. <tt class="docutils literal"><span class="pre">&lt;mu_bins&gt;</span></tt> Element<a class="headerlink" href="#mu-bins-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;mu_bins&gt;</span></tt> element has no attributes and contains a single integer.  This
+value represents the number of angular points used when converting the ACE-
+format angular distributions to an intermediate tabular representation.  This
+intermediate representation is the data which is numerically integrated by NDPP, and
+therefore increasing the number of points increases the accuracy of the results,
+however, it comes at a cost of an increase in NDPP memory usage and
+computational cost.  This parameter does not affect NDPP processing of thermal
+scattering tables.  This parameter has no impact on the runtime memory or
+computational costs of the target Monte Carlo code.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">2001</span></tt></div></blockquote>
+</div>
+<div class="section" id="freegas-cutoff-element">
+<span id="freegas-cutoff"></span><h3>2.2.5. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Element<a class="headerlink" href="#freegas-cutoff-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> element has no attributes and accepts a double-precision
+number.  This number represents the maximum incoming energy (divided by each
+library&#8217;s value of kT) at which the free gas treatment is disabled.  For example, if
+a value of <tt class="docutils literal"><span class="pre">800.0</span></tt> is entered for a library with a kT value of <tt class="docutils literal"><span class="pre">2.53E-8</span> <span class="pre">MeV</span></tt>, then
+the free gas treatment will be disabled at <tt class="docutils literal"><span class="pre">800.0</span> <span class="pre">*</span> <span class="pre">2.53E-8</span> <span class="pre">MeV</span></tt>,
+or <tt class="docutils literal"><span class="pre">2.024E-5</span> <span class="pre">MeV</span></tt>. If the free gas treatment is desired over the entire energy range
+for all nuclides/temperatures to be evaluated, a value of <tt class="docutils literal"><span class="pre">-1</span></tt> can be provided for
+this element. To disable the free gas treatment, a value of <tt class="docutils literal"><span class="pre">0.0</span></tt> can be entered.
+This cutoff value applies to all nuclides in the <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file, but can
+be overridden on a per-nuclide basis in the <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file.  This
+parameter does not affect NDPP processing of thermal scattering tables.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">400.0</span></tt></div></blockquote>
+</div>
+<div class="section" id="cross-sections-element">
+<span id="cross-sections"></span><h3>2.2.6. <tt class="docutils literal"><span class="pre">&lt;cross_sections&gt;</span></tt> Element<a class="headerlink" href="#cross-sections-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;cross_sections&gt;</span></tt> element has no attributes and simply indicates the path
+to an XML cross section listing file (usually named <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt>).</p>
+<blockquote>
+<div><em>Default</em>: The <span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CROSS_SECTIONS</span></tt> environment variable will be used to
+find the path to the XML cross section listing.</div></blockquote>
+</div>
+<div class="section" id="energy-bins-element">
+<h3>2.2.7. <tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span></tt> Element<a class="headerlink" href="#energy-bins-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span></tt> element provides the energy group structure to NDPP.
+<tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span></tt> simply contains a list (in increasing order) of
+bounding energies for a number of groups. The list must be in increasing order
+to avoid errors during the execution of NDPP. For example, if this element is
+specified as <tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span> <span class="pre">0.0</span> <span class="pre">1.0</span> <span class="pre">20.0</span> <span class="pre">&lt;/energy_bins&gt;</span></tt>, then two energy
+groups will be created, one with energies between 0 and 1 MeV and the other with
+energies between 1 and 20 MeV.</p>
+</div>
+<div class="section" id="integrate-chi-element">
+<h3>2.2.8. <tt class="docutils literal"><span class="pre">&lt;integrate_chi&gt;</span></tt> Element<a class="headerlink" href="#integrate-chi-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;integrate_chi&gt;</span></tt> element has no attributes and has an accepted value of
+&#8220;true&#8221; or &#8220;false&#8221;. If set to &#8220;true&#8221;, all fissionable nuclides will have their
+fission neutron spectrum (<img class="math" src="../_images/math/8d40e36abc06fb461a32aa67f8d3822b9922af36.png" alt="\chi\left(E\right)"/>) integrated over the
+provided energy group structure and written to the output files.
+If &#8220;false&#8221;, then the <img class="math" src="../_images/math/8d40e36abc06fb461a32aa67f8d3822b9922af36.png" alt="\chi\left(E\right)"/> integration will not be performed.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">True</span></tt></div></blockquote>
+</div>
+<div class="section" id="thinning-tol-element">
+<h3>2.2.9. <tt class="docutils literal"><span class="pre">&lt;thinning_tol&gt;</span></tt> Element<a class="headerlink" href="#thinning-tol-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;thinning_tol&gt;</span></tt> element has no attributes and accepts a single
+floating-point number representing the percent tolerance for thinning the
+incoming energy grid of the pre-processed data. The thinning algorithm applied
+essentially discards incoming energy grid points which provide the same
+result to within the error of the provided thinning tolerance when the
+neighboring points are interpolated across. The larger the provided value is the
+smaller the memory footprint of the resultant data library, but with decreased
+accuracy.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">0.0</span></tt></div></blockquote>
+</div>
+<div class="section" id="print-tol-element">
+<h3>2.2.10. <tt class="docutils literal"><span class="pre">&lt;print_tol&gt;</span></tt> Element<a class="headerlink" href="#print-tol-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;print_tol&gt;</span></tt> element has no attributes and accepts a single
+floating-point number.  This element is used to set the minimum value of
+group-to-group transfers that will be printed.  Increasing this value
+decreases the output file size but can reduce accuracy of the resultant
+preprocessed data library.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">1.0E-8</span></tt> (1.0E-6%)</div></blockquote>
+</div>
+<div class="section" id="output-format-element">
+<h3>2.2.11. <tt class="docutils literal"><span class="pre">&lt;output_format&gt;</span></tt> Element<a class="headerlink" href="#output-format-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;output_format&gt;</span></tt> element determines what format the preprocessed data
+libraries should use.  This element accepts a string.
+Valid options are &#8220;ascii&#8221;, &#8220;binary&#8221;, &#8220;hdf5&#8221;, and &#8220;human&#8221;.  If &#8220;ascii&#8221; is
+specified, an output library will be written for each entry in the
+<cite>cross_sections.xml</cite> file which contains the requested data in ASCII text.
+If &#8220;binary&#8221; is specified, the same will be written, but in a
+machine-readable binary format.  These first two are similar to the Type 1 and
+Type 2 ACE formats, respectively.  If &#8220;hdf5&#8221; is specified, a single binary HDF5
+file will be created which contains the data for all the <cite>cross_sections.xml</cite>
+file entries. If &#8220;human&#8221; is specified, then a more verbose form of the &#8220;ascii&#8221;
+format will be written which is useful for manual inspection of results.</p>
+<blockquote>
+<div><em>Default</em>: <tt class="docutils literal"><span class="pre">ascii</span></tt></div></blockquote>
+</div>
+<div class="section" id="threads-element">
+<h3>2.2.12. <tt class="docutils literal"><span class="pre">&lt;threads&gt;</span></tt> Element<a class="headerlink" href="#threads-element" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;threads&gt;</span></tt> element has no attributes and contains a single integer.  This
+value is the number of OpenMP threads to use.  This element has no effect when
+NDPP is not compiled with OpenMP support.</p>
+<blockquote>
+<div><em>Default</em>: Use all available threads (or one, if NDPP was not compiled with
+OpenMP support).</div></blockquote>
+</div>
+</div>
+<div class="section" id="cross-section-library-specification-cross-sections-xml">
+<h2>2.3. Cross-Section Library Specification &#8211; cross_sections.xml<a class="headerlink" href="#cross-section-library-specification-cross-sections-xml" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">cross_sections.xml</span></tt> file uses a very similar format to that used in <a class="reference external" href="https://github.com/mit-crpg/openmc">OpenMC</a>
+with deviations noted here.  For a full discussion of the format
+and generation strategies see the OpenMC manual <a class="reference external" href="http://mit-crpg.github.io/openmc/usersguide/install.html#cross-section-configuration">discussion</a>.</p>
+<div class="section" id="freegas-cutoff-attribute">
+<h3>2.3.1. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Attribute<a class="headerlink" href="#freegas-cutoff-attribute" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> attribute is a member of the <tt class="docutils literal"><span class="pre">&lt;ace_table&gt;</span></tt> element and
+accepts a single floating-point number. The value provided will override the
+value of <a class="reference internal" href="#freegas-cutoff">freegas_cutoff</a> specified in the <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt> file for the library it is
+an attribute of. If none is provided, the value provided in the <tt class="docutils literal"><span class="pre">ndpp.xml</span></tt> input
+will be applied.  The syntax for this attribute is the same as is used for the
+<a class="reference internal" href="#freegas-cutoff">freegas_cutoff</a> element discussed above.  This attribute has no affect on thermal
+scattering tables.</p>
+<p>As an example (which could be commonly utilized), the following shows how to set
+the H-1 free gas treatment to be applied over the entire energy range:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;ace_table</span> <span class="na">alias=</span><span class="s">&quot;H-1.70c&quot;</span> <span class="na">freegas_cutoff=</span><span class="s">&quot;-1.0&quot;</span> <span class="na">awr=</span><span class="s">&quot;0.999167&quot;</span> <span class="na">location=</span><span class="s">&quot;1&quot;</span> <span class="na">name=</span><span class="s">&quot;1001.70c&quot;</span> <span class="na">path=</span><span class="s">&quot;endf70a&quot;</span> <span class="na">temperature=</span><span class="s">&quot;2.5301e-08&quot;</span> <span class="na">zaid=</span><span class="s">&quot;1001&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="3. NDPP Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="1. Installation and Configuration"
+             >previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" >User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013-2014, Adam G Nelson and Contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

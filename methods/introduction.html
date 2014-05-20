@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Introduction &mdash; NDPP Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="NDPP Documentation" href="../index.html" />
+    <link rel="up" title="Theory and Methodology" href="index.html" />
+    <link rel="next" title="2. Cross Section Representation" href="cross_sections.html" />
+    <link rel="prev" title="Theory and Methodology" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cross_sections.html" title="2. Cross Section Representation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Theory and Methodology"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Theory and Methodology</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ndpp_small.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. Introduction</a><ul>
+<li><a class="reference internal" href="#overview-of-program-flow">1.1. Overview of Program Flow</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Theory and Methodology</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cross_sections.html"
+                        title="next chapter">2. Cross Section Representation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/methods/introduction.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<span id="methods-introduction"></span><h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> tallies are multi-variate functions integrated over some portion
+of phase-space.  The variables of these functions for neutron simulation include
+the neutron&#8217;s incoming and outgoing energies (<img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/> and
+<img class="math" src="../_images/math/cfd13a0f26eb7ef0093319a7669da7dd3771dbac.png" alt="E"/>, respectively), direction of motion and change in angle
+(<img class="math" src="../_images/math/b39932b8cbb311eeee9815738f6be3757737b2ff.png" alt="\Omega"/> and <img class="math" src="../_images/math/126e84ba38f7dece5f0ad64e929b9588b20f6440.png" alt="\mu"/>, respectively), and space (<img class="math" src="../_images/math/7c345e599060f3e52c048d5c559a7f851bba7605.png" alt="\vec{r}"/>).
+In an analog tally, each of these dimensions must be adequately represented by
+the sample population. In a production environment it can become prohibitively
+costly to perform this tallying to a sufficient degree of convergence.  The
+prime example of this is tallying multi-group scattering moments in a system
+with anisotropic scattering. The analog Monte Carlo estimator for multi-group
+scattering moments is:</p>
+<div class="math">
+<p><img src="../_images/math/bf20a08120111c3feefae8e6d9435fdfda6d5c16.png" alt="\Sigma_{s,l,g' \rightarrow g,i}\ =\ {\sum\limits_n\:\sum\limits_{MT}\:
+\int\limits_{V_i} \int\limits_{E_{g'}}^{E_{g'-1}}\int\limits_{E_{g}}^{E_{g-1}}
+\int\limits_{-1}^{1} \:N_{n,i}\:\sigma_{s,n,MT}(E')\:f_{n,MT}(E',E,\mu)\:
+P_l(\mu)\:\phi(\vec{r},E')\:d\mu\:dE\:dE'\:dr^3
+\over{\int\limits_{V_i}\int\limits_{E_{g'}}^{E_{g'-1}}\:\phi(\vec{r},E')\:
+dE'\:dr^3}}"/></p>
+</div><p>where <img class="math" src="../_images/math/d99efde75c84ef402a92cd4497530d2366fb112f.png" alt="l"/> is the Legendre-moment order, <img class="math" src="../_images/math/77ea69585373a2a91cba61906df6c6ae76dadc80.png" alt="g'"/> and <img class="math" src="../_images/math/67f4714f065d485540ad40829e0717bf75e9dd85.png" alt="g"/> are the
+incoming and outgoing energy groups, <img class="math" src="../_images/math/413f8a8e40062a9090d9d50b88bc7b551b314c26.png" alt="n"/> and <img class="math" src="../_images/math/b23fd097196da132bfccfaa5980c954995a00d08.png" alt="MT"/> are the nuclide
+and reaction channels, and <img class="math" src="../_images/math/a581f053bbfa5115f42c13094857cdd12a37ec49.png" alt="i"/> is the volumetric region of interest.</p>
+<p>However, for certain tallies some of these variables are actually dependent
+variables and the function relating the variables is known from the nuclear data
+present in the continuous-energy ACE file.  In the above example of multi-group
+scattering moments, the <img class="math" src="../_images/math/f15b28cde718abb61cad1dca635bfad7d86029dc.png" alt="f_{n,MT}(E',E,\mu)"/> is tabulated in the ACE file
+as a function of the incoming energy, <img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/>. If this continuous functional
+form is tallied instead of a discrete event (like with an analog estimator), the
+tallies&#8217; rate of convergence will increased, as discussed in <a class="reference external" href="AdamG.NelsonandWilliamR.Martin,&quot;ImprovedConvergenceofMonteCarloGeneratedMulti-GroupScatteringMoments,&quot;*Proc.Int.Conf.MathematicsandComputationalMethodsAppliedtoNuclearScienceandEngineering*,SunValley,Idaho,May5--9(2013).">Moment Tally</a>.</p>
+<p>However, these functions exist in various, non-concise forms within the ACE
+data.  To convert these functions to a consistent and concise format such as
+functional expansion moments as the neutron tracking takes place would be
+quite costly, outweighing any increase in convergence rate by the method.</p>
+<p>The Nuclear Data PreProcessor (NDPP) solves this problem by converting all the
+various forms of these functions for each nuclide in to a single format for each
+tally type as a function of <img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/>.  The integration over outgoing energies
+is also performed, further lessening the dimensionality which must be resolved
+statistically.</p>
+<p>If a Monte Carlo code takes advantage of the pre-processing performed by NDPP,
+the analog Monte Carlo estimator above is reduced to:</p>
+<div class="math">
+<p><img src="../_images/math/3389a29ca06cee51cb544861cacf6d6d4467e43d.png" alt="\Sigma_{s,E' \rightarrow g,i}(E',\mu)\ =\ \sum\limits_n\:\sum\limits_{MT}
+\int\limits_{E_{g}}^{E_{g-1}}N_{n,i}\:\sigma_{s,n,MT}(E')\:
+f_{n,MT}(E',E,\mu)dE"/></p>
+</div><p>where <img class="math" src="../_images/math/1aaa6e57e86b8bf6551f58f4db9062ee1f2cbd94.png" alt="\int\limits_{E_{g}}^{E_{g-1}}f_{n,MT}(E',E,\mu)dE"/> is the term
+provided (as) a function of <img class="math" src="../_images/math/fdbdb6243522f89db716f229b94be1c028a97b8a.png" alt="E'"/>) by NDPP.</p>
+<p>NDPP currently only provides the values shown above for the scattering angular
+distribution and provides pre-integrated values of <img class="math" src="../_images/math/53a6d17e8c9a67f8cb9eb5239f0d859db87fe1e2.png" alt="\chi_g"/>.</p>
+<div class="section" id="overview-of-program-flow">
+<h2>1.1. Overview of Program Flow<a class="headerlink" href="#overview-of-program-flow" title="Permalink to this headline">¶</a></h2>
+<p>To provide the pre-integrated nuclear data to a Monte Carlo code, NDPP performs
+the following steps:</p>
+<p>1. Read input files to determine the user&#8217;s desired putput format, energy
+group structure, representation of angular data, and a list of
+libraries/nuclides/temperatures to perform the pre-processing for.</p>
+<p>2. NDPP will then perform the following for each library/nuclide/temperature
+requested by the user:</p>
+<blockquote>
+<div><p>2.a. Read the ACE-formatted nuclear data in to memory.</p>
+<p>2.b. Write the header information for the pre-processed data library to be
+output from NDPP.</p>
+<p>2.c. For each scattering reaction type, step through each of the incoming
+energies and perform the following:</p>
+<blockquote>
+<div><p>2.c.1. Determine the angular distribution boundaries corresponding
+to the energy group structure requested.</p>
+<p>2.c.2. Perform integration over the outgoing energy and angle
+dimensions to generate Legendre moments or tabular bins as
+requested.</p>
+</div></blockquote>
+<p>2.d. Combine all the reaction type&#8217;s data on to a unionized incoming energy
+grid.</p>
+<p>2.e. Perform optional energy grid thinning.</p>
+<p>2.f. Write the scattering data to the output library.</p>
+<p>2.g. Perform steps similar to 2.c to 2.f but for the fission neutron
+outgoing energy distribution, <img class="math" src="../_images/math/f632c791f693410fc1bf07ad7cb02c6fcfef9aed.png" alt="\chi"/>.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Print NDPP summary output data for the user&#8217;s information.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cross_sections.html" title="2. Cross Section Representation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Theory and Methodology"
+             >previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" >Theory and Methodology</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013-2014, Adam G Nelson and Contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. Troubleshooting NDPP &mdash; NDPP Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="NDPP Documentation" href="../index.html" />
+    <link rel="up" title="User’s Guide" href="index.html" />
+    <link rel="next" title="Theory and Methodology" href="../methods/index.html" />
+    <link rel="prev" title="3. NDPP Utilities" href="utilities.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../methods/index.html" title="Theory and Methodology"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="3. NDPP Utilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ndpp_small.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. Troubleshooting NDPP</a><ul>
+<li><a class="reference internal" href="#problems-with-compilation">4.1. Problems with Compilation</a><ul>
+<li><a class="reference internal" href="#fatal-error-file-xml-data-settings-t-mod-opened-at-1-is-not-a-gfortran-module-file">4.1.1. Fatal Error: File &#8216;xml_data_settings_t.mod&#8217; opened at (1) is not a GFORTRAN module file</a></li>
+<li><a class="reference internal" href="#gfortran-unrecognized-option-cpp">4.1.2. gfortran: unrecognized option &#8216;-cpp&#8217;</a></li>
+<li><a class="reference internal" href="#f951-error-unrecognized-command-line-option-fbacktrace">4.1.3. f951: error: unrecognized command line option &#8220;-fbacktrace&#8221;</a></li>
+<li><a class="reference internal" href="#make-1-ifort-command-not-found">4.1.4. make[1]: ifort: Command not found</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problems-with-ndpp-execution">4.2. Problems with NDPP Execution</a><ul>
+<li><a class="reference internal" href="#segmentation-fault">4.2.1. Segmentation Fault</a></li>
+<li><a class="reference internal" href="#error-no-cross-sections-xml-file-was-specified-in-ndpp-xml-or-in-the-cross-sections-environment-variable">4.2.2. ERROR: No cross_sections.xml file was specified in ndpp.xml or in the CROSS_SECTIONS environment variable.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="previous chapter">3. NDPP Utilities</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../methods/index.html"
+                        title="next chapter">Theory and Methodology</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/usersguide/troubleshoot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="troubleshooting-ndpp">
+<span id="usersguide-troubleshoot"></span><h1>4. Troubleshooting NDPP<a class="headerlink" href="#troubleshooting-ndpp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="problems-with-compilation">
+<h2>4.1. Problems with Compilation<a class="headerlink" href="#problems-with-compilation" title="Permalink to this headline">¶</a></h2>
+<p>If you are experiencing problems trying to compile NDPP, first check if the
+error you are receiving is among the following options.</p>
+<div class="section" id="fatal-error-file-xml-data-settings-t-mod-opened-at-1-is-not-a-gfortran-module-file">
+<h3>4.1.1. Fatal Error: File &#8216;xml_data_settings_t.mod&#8217; opened at (1) is not a GFORTRAN module file<a class="headerlink" href="#fatal-error-file-xml-data-settings-t-mod-opened-at-1-is-not-a-gfortran-module-file" title="Permalink to this headline">¶</a></h3>
+<p>When NDPP compiles, the first thing it needs to do is compile source in the
+xml-fortran subdirectory. If you compiled everything with a compiler other than
+gfortran, performed a <strong class="program">make clean</strong>, and then tried to <strong class="program">make</strong>
+with gfortran, the xml-fortran modules would have been compiled with a different
+compiler. To fix this, try clearing out all modules and object files with
+<strong class="program">make distclean</strong> and then recompiling.</p>
+</div>
+<div class="section" id="gfortran-unrecognized-option-cpp">
+<h3>4.1.2. gfortran: unrecognized option &#8216;-cpp&#8217;<a class="headerlink" href="#gfortran-unrecognized-option-cpp" title="Permalink to this headline">¶</a></h3>
+<p>You are probably using a version of the gfortran compiler that is too
+old. Download and install the latest version of <a class="reference external" href="http://gcc.gnu.org/wiki/GFortran">gfortran</a>.</p>
+</div>
+<div class="section" id="f951-error-unrecognized-command-line-option-fbacktrace">
+<h3>4.1.3. f951: error: unrecognized command line option &#8220;-fbacktrace&#8221;<a class="headerlink" href="#f951-error-unrecognized-command-line-option-fbacktrace" title="Permalink to this headline">¶</a></h3>
+<p>You are probably using a version of the gfortran compiler that is too
+old. Download and install the latest version of <a class="reference external" href="http://gcc.gnu.org/wiki/GFortran">gfortran</a>.</p>
+</div>
+<div class="section" id="make-1-ifort-command-not-found">
+<h3>4.1.4. make[1]: ifort: Command not found<a class="headerlink" href="#make-1-ifort-command-not-found" title="Permalink to this headline">¶</a></h3>
+<p>You tried compiling with the Intel Fortran compiler and it was not found on your
+<span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>. If you have the Intel compiler installed, make sure the shell
+can locate it (this can be tested with <strong class="program">which ifort</strong>).</p>
+</div>
+</div>
+<div class="section" id="problems-with-ndpp-execution">
+<h2>4.2. Problems with NDPP Execution<a class="headerlink" href="#problems-with-ndpp-execution" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="segmentation-fault">
+<h3>4.2.1. Segmentation Fault<a class="headerlink" href="#segmentation-fault" title="Permalink to this headline">¶</a></h3>
+<p>A segmentation fault occurs when the program tries to access a variable in
+memory that was outside the memory allocated for the program. The best way to
+debug a segmentation fault is to re-compile NDPP with debug options turned
+on. First go to your <tt class="docutils literal"><span class="pre">ndpp/src</span></tt> directory where NDPP was compiled and type
+the following commands:</p>
+<div class="highlight-sh"><div class="highlight"><pre>make distclean
+make <span class="nv">DEBUG</span><span class="o">=</span>yes
+</pre></div>
+</div>
+<p>Now when you re-run your problem, it should report exactly where the program
+failed. If after reading the debug output, you are still unsure why the program
+failed, send inquiries to the NDPP Users <a class="reference external" href="TODO">Group</a>.</p>
+</div>
+<div class="section" id="error-no-cross-sections-xml-file-was-specified-in-ndpp-xml-or-in-the-cross-sections-environment-variable">
+<h3>4.2.2. ERROR: No cross_sections.xml file was specified in ndpp.xml or in the CROSS_SECTIONS environment variable.<a class="headerlink" href="#error-no-cross-sections-xml-file-was-specified-in-ndpp-xml-or-in-the-cross-sections-environment-variable" title="Permalink to this headline">¶</a></h3>
+<p>NDPP needs to know where to find cross section data for each nuclide. This
+information is provided by the <cite>cross_sections.xml</cite> file. You need to tell
+NDPP where to find the <cite>cross_sections.xml</cite> file either with the
+<cite>cross_sections</cite> element in ndpp.xml or with the <span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CROSS_SECTIONS</span></tt>
+environment variable. It is recommended to add a line in your <tt class="docutils literal"><span class="pre">.profile</span></tt>,
+<tt class="docutils literal"><span class="pre">.bash_profile</span></tt>, <tt class="docutils literal"><span class="pre">.bashrc</span></tt> (or equivalent)
+setting the <span class="target" id="index-2"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CROSS_SECTIONS</span></tt> environment variable.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../methods/index.html" title="Theory and Methodology"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="3. NDPP Utilities"
+             >previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li>
+          <li><a href="index.html" >User&#8217;s Guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013-2014, Adam G Nelson and Contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>

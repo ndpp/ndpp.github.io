@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>User’s Guide &mdash; NDPP Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="NDPP Documentation" href="../index.html" />
+    <link rel="next" title="1. Installation and Configuration" href="install.html" />
+    <link rel="prev" title="Quick Install Guide" href="../quickinstall.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="install.html" title="1. Installation and Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../quickinstall.html" title="Quick Install Guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/ndpp_small.png" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../quickinstall.html"
+                        title="previous chapter">Quick Install Guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">1. Installation and Configuration</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/usersguide/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="user-s-guide">
+<span id="usersguide"></span><h1>User&#8217;s Guide<a class="headerlink" href="#user-s-guide" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the NDPP User&#8217;s Guide!  This tutorial will guide you through the
+essential aspects of using NDPP to convert continuous-energy data in to a
+form which can be readily tallied in a Monte Carlo neutron transport code with a
+significantly enhanced Figure-of-Merit.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation and Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#building-from-source">1.1. Building from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#prerequisites">1.1.1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#obtaining-the-source">1.1.2. Obtaining the Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#build-configuration">1.1.3. Build Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#compiling-on-linux-and-mac-os-x">1.1.4. Compiling on Linux and Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#compiling-on-windows">1.1.5. Compiling on Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#cross-section-configuration">1.2. Cross Section Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html#using-endf-b-vii-1-cross-sections-from-nndc">1.2.1. Using ENDF/B-VII.1 Cross Sections from NNDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#using-jeff-cross-sections-from-oecd-nea">1.2.2. Using JEFF Cross Sections from OECD/NEA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#using-cross-sections-from-mcnp">1.2.3. Using Cross Sections from MCNP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html#using-cross-sections-from-serpent">1.2.4. Using Cross Sections from Serpent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#running-ndpp">1.3. Running NDPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">2. Writing XML Input Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input.html#overview-of-files">2.1. Overview of Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#ndpp-options-specification-ndpp-xml">2.2. NDPP Options Specification &#8211; ndpp.xml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input.html#scatt-type-element">2.2.1. <tt class="docutils literal"><span class="pre">&lt;scatt_type&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#scatt-order-element">2.2.2. <tt class="docutils literal"><span class="pre">&lt;scatt_order&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#nuscatter-element">2.2.3. <tt class="docutils literal"><span class="pre">&lt;nuscatter&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#mu-bins-element">2.2.4. <tt class="docutils literal"><span class="pre">&lt;mu_bins&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#freegas-cutoff-element">2.2.5. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#cross-sections-element">2.2.6. <tt class="docutils literal"><span class="pre">&lt;cross_sections&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#energy-bins-element">2.2.7. <tt class="docutils literal"><span class="pre">&lt;energy_bins&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#integrate-chi-element">2.2.8. <tt class="docutils literal"><span class="pre">&lt;integrate_chi&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#thinning-tol-element">2.2.9. <tt class="docutils literal"><span class="pre">&lt;thinning_tol&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#print-tol-element">2.2.10. <tt class="docutils literal"><span class="pre">&lt;print_tol&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#output-format-element">2.2.11. <tt class="docutils literal"><span class="pre">&lt;output_format&gt;</span></tt> Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input.html#threads-element">2.2.12. <tt class="docutils literal"><span class="pre">&lt;threads&gt;</span></tt> Element</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="input.html#cross-section-library-specification-cross-sections-xml">2.3. Cross-Section Library Specification &#8211; cross_sections.xml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="input.html#freegas-cutoff-attribute">2.3.1. <tt class="docutils literal"><span class="pre">&lt;freegas_cutoff&gt;</span></tt> Attribute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">3. NDPP Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html#ndpp-data-library">3.1. NDPP_DATA Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">4. Troubleshooting NDPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html#problems-with-compilation">4.1. Problems with Compilation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#fatal-error-file-xml-data-settings-t-mod-opened-at-1-is-not-a-gfortran-module-file">4.1.1. Fatal Error: File &#8216;xml_data_settings_t.mod&#8217; opened at (1) is not a GFORTRAN module file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#gfortran-unrecognized-option-cpp">4.1.2. gfortran: unrecognized option &#8216;-cpp&#8217;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#f951-error-unrecognized-command-line-option-fbacktrace">4.1.3. f951: error: unrecognized command line option &#8220;-fbacktrace&#8221;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#make-1-ifort-command-not-found">4.1.4. make[1]: ifort: Command not found</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html#problems-with-ndpp-execution">4.2. Problems with NDPP Execution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#segmentation-fault">4.2.1. Segmentation Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="troubleshoot.html#error-no-cross-sections-xml-file-was-specified-in-ndpp-xml-or-in-the-cross-sections-environment-variable">4.2.2. ERROR: No cross_sections.xml file was specified in ndpp.xml or in the CROSS_SECTIONS environment variable.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="install.html" title="1. Installation and Configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../quickinstall.html" title="Quick Install Guide"
+             >previous</a> |</li>
+        <li><a href="../index.html">NDPP Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013-2014, Adam G Nelson and Contributors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </body>
+</html>
